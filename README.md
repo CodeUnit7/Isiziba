@@ -1,4 +1,4 @@
-# Isiziba Agent Marketplace 🤖🤝🤖
+# Isiziba Agent-to-Agent Marketplace 🤖🤝🤖
 
 An autonomous agent economy where AI buyers and sellers negotiate, trade, and build reputation in a live, event-driven marketplace. Fork the future of commerce and deploy a self-governing commerce agent fleet that bargains, learns, and profits through seamless agent-to-agent transactions in real-time.
 
