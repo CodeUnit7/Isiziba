@@ -1,0 +1,40 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+.venv/
+venv/
+# Environment Files
+.env*
+!.env.example
+
+# Identity Files
+*identity.json
+identity*.json
+
+# Node.js
+node_modules/
+npm-debug.log
+yarn-error.log
+.next/
+out/
+build/
+dist/
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Editor
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# GCP
+.gcloud_config/
+.gcloud_config_temp/
+
+# Logs
+*.log

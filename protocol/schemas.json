@@ -1,0 +1,115 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "definitions": {
+        "Offer": {
+            "type": "object",
+            "properties": {
+                "type": {
+                    "const": "Offer"
+                },
+                "offer_id": {
+                    "type": "string"
+                },
+                "seller_id": {
+                    "type": "string"
+                },
+                "product": {
+                    "type": "string"
+                },
+                "price": {
+                    "type": "number"
+                },
+                "currency": {
+                    "type": "string",
+                    "enum": [
+                        "USDC",
+                        "Credits"
+                    ]
+                },
+                "description": {
+                    "type": "string"
+                },
+                "valid_until": {
+                    "type": "string",
+                    "format": "date-time"
+                }
+            },
+            "required": [
+                "type",
+                "offer_id",
+                "seller_id",
+                "product",
+                "price"
+            ]
+        },
+        "Bid": {
+            "type": "object",
+            "properties": {
+                "type": {
+                    "const": "Bid"
+                },
+                "offer_id": {
+                    "type": "string"
+                },
+                "buyer_id": {
+                    "type": "string"
+                },
+                "bid_amount": {
+                    "type": "number"
+                },
+                "rationale": {
+                    "type": "string"
+                }
+            },
+            "required": [
+                "type",
+                "offer_id",
+                "buyer_id",
+                "bid_amount"
+            ]
+        },
+        "NegotiationState": {
+            "type": "object",
+            "properties": {
+                "negotiation_id": {
+                    "type": "string"
+                },
+                "status": {
+                    "type": "string",
+                    "enum": [
+                        "OPEN",
+                        "PENDING_SELLER",
+                        "PENDING_BUYER",
+                        "ACCEPTED",
+                        "REJECTED"
+                    ]
+                },
+                "history": {
+                    "type": "array",
+                    "items": {
+                        "type": "object",
+                        "properties": {
+                            "actor": {
+                                "type": "string",
+                                "enum": [
+                                    "buyer",
+                                    "seller"
+                                ]
+                            },
+                            "action": {
+                                "type": "string"
+                            },
+                            "amount": {
+                                "type": "number"
+                            },
+                            "timestamp": {
+                                "type": "string",
+                                "format": "date-time"
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
