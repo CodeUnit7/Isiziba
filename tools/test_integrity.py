@@ -16,6 +16,7 @@ sys.modules["vertexai.preview.generative_models"] = MagicMock()
 import os
 os.environ["AGENT_MKT_PROJECT_ID"] = "test-project"
 os.environ["AGENT_MKT_TEST_MODE"] = "true"
+os.environ["AGENT_MKT_MODEL"] = "gemini-1.5-flash-001" # Dummy model for init
 
 from api_server import app
 
