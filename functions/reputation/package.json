@@ -1,6 +1,6 @@
 {
   "name": "reputation-guard",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Reputation logic for Agent Marketplace",
   "main": "index.js",
   "engines": {

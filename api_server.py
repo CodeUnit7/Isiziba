@@ -169,7 +169,8 @@ class ConnectionManager:
                 logger.warning(f"⚠️ Failed to send targeted message to {agent_id}: {e}")
 
 manager = ConnectionManager()
-app = FastAPI(title="Isiziba Marketplace API")
+app = FastAPI(title="Isiziba Marketplace API", version="1.0.1")
+__version__ = "1.0.1"
 
 # Add CORS Middleware
 app.add_middleware(
