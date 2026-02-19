@@ -1,5 +1,6 @@
 import google.auth
 from google.cloud import aiplatform_v1
+from google.cloud import aiplatform
 
 import os
 

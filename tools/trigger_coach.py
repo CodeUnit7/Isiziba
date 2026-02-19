@@ -1,5 +1,6 @@
 import requests
 import time
+import os
 
 API_URL = os.getenv("AGENT_MKT_API_URL")
 if not API_URL:
