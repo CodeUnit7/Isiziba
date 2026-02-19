@@ -8,6 +8,9 @@ import { useMarketContext } from '@/contexts/MarketContext';
 type FeedbackItem = {
     type: string;
     negotiation_id: string;
+    transaction_id?: string;
+    product?: string;
+    price?: number;
     source: string;
     involved_agents?: string[];
     feedback?: {
@@ -145,6 +148,34 @@ export default function FeedbackTerminal() {
                                     </span>
                                 </div>
 
+                                {(item.product || item.price) && (
+                                    <div style={{
+                                        fontSize: '0.8rem',
+                                        color: '#e2e8f0',
+                                        marginBottom: '0.5rem',
+                                        paddingBottom: '0.5rem',
+                                        borderBottom: '1px solid rgba(255,255,255,0.1)',
+                                        width: '100%',
+                                        display: 'flex',
+                                        justifyContent: 'space-between',
+                                        alignItems: 'center'
+                                    }}>
+                                        <span style={{ fontWeight: 600, color: '#f1f5f9' }}>{item.product || 'Unknown Item'}</span>
+                                        {item.price && (
+                                            <span style={{
+                                                color: '#10b981',
+                                                backgroundColor: 'rgba(16, 185, 129, 0.1)',
+                                                padding: '2px 6px',
+                                                borderRadius: '4px',
+                                                fontSize: '0.75rem',
+                                                fontWeight: 600
+                                            }}>
+                                                ${item.price.toLocaleString()}
+                                            </span>
+                                        )}
+                                    </div>
+                                )}
+
                                 <div style={{
                                     fontSize: '0.85rem',
                                     marginBottom: '0.4rem',
@@ -206,6 +237,11 @@ export default function FeedbackTerminal() {
                                 </div>
                                 <div style={{ fontSize: '0.65rem', color: 'var(--secondary)', marginTop: '0.5rem' }}>
                                     REF: {item.negotiation_id}
+                                    {item.transaction_id && (
+                                        <span style={{ marginLeft: '0.75rem', opacity: 0.8 }}>
+                                            TX: {item.transaction_id}
+                                        </span>
+                                    )}
                                 </div>
                             </div>
                         );

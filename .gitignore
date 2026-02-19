@@ -7,8 +7,14 @@ venv/
 # Environment Files
 .env*
 !.env.example
+.gcloud_config/
+.gcloud_config_temp/
 
-# Identity Files
+# Virtual Environments
+.venv/
+.venv_new/
+venv_clean/
+venv/
 *identity.json
 identity*.json
 
@@ -38,3 +44,6 @@ dist/
 
 # Logs
 *.log
+GEMINI.md
+*backup*
+*trash*

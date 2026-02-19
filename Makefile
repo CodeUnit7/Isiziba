@@ -1,10 +1,17 @@
--include .env.config
+-include .env
+-include /tmp/ag_config.env
+
+# Fallback: Extraction using python if include fails due to stat/permission issues
+AGENT_MKT_PROJECT_ID ?= $(shell .venv/bin/python -c "import os; print(next((line.split('=')[1].strip() for line in open('.env') if line.startswith('AGENT_MKT_PROJECT_ID')), 'your-gcp-project-id'))" 2>/dev/null)
 
 export
 
 # Default Variables
 # Use ?= to allow overriding from environment, but default to safe values
-PROJECT_ID ?= your-gcp-project-id
+PROJECT_ID ?= $(AGENT_MKT_PROJECT_ID)
+ifeq ($(PROJECT_ID),)
+    PROJECT_ID := your-gcp-project-id
+endif
 API_HOST ?= 127.0.0.1
 FRONTEND_PORT ?= 3005
 BACKEND_PORT ?= 8005
@@ -13,7 +20,7 @@ MODEL ?= gemini-2.0-flash
 LOG_DIR ?= /tmp/ag_logs
 
 AGENT_MKT_MAX_HEARTBEAT_FAILURES ?= 5
-PYTHON := ./.venv/bin/python
+PYTHON := .venv/bin/python
 
 # Simulation Control
 # Simulation Control

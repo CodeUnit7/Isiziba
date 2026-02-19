@@ -957,13 +957,36 @@ async def analyze_negotiation(negotiation_id: str, involved_agents: List[str]):
                 "strategy_score": 5
             }
         
+        # 2.5 Fetch Transaction Details (Product, Price, ID)
+        tx_details = {}
+        try:
+            # Run blocking Firestore query in thread
+            tx_docs = await asyncio.to_thread(
+                lambda: list(current_db.collection("transactions")
+                             .where("negotiation_id", "==", negotiation_id)
+                             .limit(1)
+                             .stream())
+            )
+            if tx_docs:
+                tx_data = tx_docs[0].to_dict()
+                tx_details = {
+                    "product": tx_data.get("product"),
+                    "price": tx_data.get("amount"),
+                    "transaction_id": tx_data.get("id")
+                }
+            else:
+                 logger.warning(f"⚠️ [Coach] No transaction found for {negotiation_id}")
+        except Exception as e:
+            logger.warning(f"⚠️ [Coach] Failed to fetch transaction details: {e}")
+
         # 3. Prepare Report
         report = {
             "type": "feedback_report",
             "negotiation_id": negotiation_id,
             "involved_agents": involved_agents,
             "feedback": analysis,
-            "timestamp": time.time()
+            "timestamp": time.time(),
+            **tx_details
         }
 
         # 4. Save to Firestore (Coach Persistence)

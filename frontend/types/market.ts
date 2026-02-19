@@ -13,6 +13,9 @@ export interface WSMessage {
 
 export interface FeedbackReport {
     negotiation_id: string;
+    transaction_id?: string;
+    product?: string;
+    price?: number;
     feedback: {
         buyer_feedback: string;
         seller_feedback: string;
