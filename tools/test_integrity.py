@@ -17,6 +17,7 @@ import os
 os.environ["AGENT_MKT_PROJECT_ID"] = "test-project"
 os.environ["AGENT_MKT_TEST_MODE"] = "true"
 os.environ["AGENT_MKT_MODEL"] = "gemini-1.5-flash-001" # Dummy model for init
+os.environ["AGENT_MKT_MAX_STEPS"] = "10" # Dummy max steps for init
 
 from api_server import app
 
